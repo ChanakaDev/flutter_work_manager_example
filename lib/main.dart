@@ -8,7 +8,11 @@ import 'package:workmanager/workmanager.dart';
 import 'package:auto_start_flutter/auto_start_flutter.dart';
 
 sendData() {
-  print("Hiiiiiiiiiiiiiiii !!!");
+  var text = "Running";
+
+  while(true){
+    print(text);
+  }
 }
 
 // Giving a task name to uniquely identify the task
@@ -101,25 +105,25 @@ class _HomeScreenState extends State<HomeScreen> {
             // Creating a unique identifier
             var uniqueIdentifier = DateTime.now().second.toString();
 
-            // A perriodic task
-            await Workmanager().registerPeriodicTask(
-              uniqueIdentifier, taskName, // The task name you defined before
-              frequency: const Duration(seconds: 15),
-              // constraints: Constraints(
-              //   networkType: NetworkType.connected,
-              // ),
-              initialDelay: const Duration(seconds: 15),
-            );
-
-            // // A oneOffTask
-            // await Workmanager().registerOneOffTask(
-            //   uniqueIdentifier,
-            //   taskName,
-            //   // // Constraint to run the task
+            // // A perriodic task
+            // await Workmanager().registerPeriodicTask(
+            //   uniqueIdentifier, taskName, // The task name you defined before
+            //   frequency: const Duration(seconds: 15),
             //   // constraints: Constraints(
             //   //   networkType: NetworkType.connected,
             //   // ),
+            //   initialDelay: const Duration(seconds: 15),
             // );
+
+            // A oneOffTask
+            await Workmanager().registerOneOffTask(
+              uniqueIdentifier,
+              taskName,
+              // // Constraint to run the task
+              // constraints: Constraints(
+              //   networkType: NetworkType.connected,
+              // ),
+            );
           },
           child: const Text("Run background task"),
         ),
